@@ -1,2 +1,10 @@
 C:\Users\Max\Documents\GitHub\KSP optimum stage calculator\KSP optimum stage calculator\KSP optimum stage calculator\bin\Debug\KSP optimum stage calculator.exe.config
 C:\Users\Max\Documents\GitHub\KSP optimum stage calculator\KSP optimum stage calculator\bin\Debug\KSP optimum stage calculator.exe.config
+C:\Users\Max\Documents\GitHub\KSP optimum stage calculator\KSP optimum stage calculator\bin\Debug\KSP optimum stage calculator.exe
+C:\Users\Max\Documents\GitHub\KSP optimum stage calculator\KSP optimum stage calculator\bin\Debug\KSP optimum stage calculator.pdb
+C:\Users\Max\Documents\GitHub\KSP optimum stage calculator\KSP optimum stage calculator\obj\Debug\KSP optimum stage calculator.csprojResolveAssemblyReference.cache
+C:\Users\Max\Documents\GitHub\KSP optimum stage calculator\KSP optimum stage calculator\obj\Debug\KSP_optimum_stage_calculator.Form1.resources
+C:\Users\Max\Documents\GitHub\KSP optimum stage calculator\KSP optimum stage calculator\obj\Debug\KSP_optimum_stage_calculator.Properties.Resources.resources
+C:\Users\Max\Documents\GitHub\KSP optimum stage calculator\KSP optimum stage calculator\obj\Debug\KSP optimum stage calculator.csproj.GenerateResource.Cache
+C:\Users\Max\Documents\GitHub\KSP optimum stage calculator\KSP optimum stage calculator\obj\Debug\KSP optimum stage calculator.exe
+C:\Users\Max\Documents\GitHub\KSP optimum stage calculator\KSP optimum stage calculator\obj\Debug\KSP optimum stage calculator.pdb

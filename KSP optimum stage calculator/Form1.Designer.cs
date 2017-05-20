@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.v_mass_box = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.p_mass_box = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.min_accel_box = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.comp_button = new System.Windows.Forms.Button();
+            this.progress_bar = new System.Windows.Forms.ProgressBar();
+            this.output_box = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
-            // textBox1
+            // v_mass_box
             // 
-            this.textBox1.Location = new System.Drawing.Point(145, 8);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 0;
+            this.v_mass_box.Location = new System.Drawing.Point(145, 8);
+            this.v_mass_box.Name = "v_mass_box";
+            this.v_mass_box.Size = new System.Drawing.Size(100, 20);
+            this.v_mass_box.TabIndex = 0;
             // 
             // label1
             // 
@@ -55,12 +55,12 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Vessel mass (t)";
             // 
-            // textBox2
+            // p_mass_box
             // 
-            this.textBox2.Location = new System.Drawing.Point(145, 34);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 2;
+            this.p_mass_box.Location = new System.Drawing.Point(145, 34);
+            this.p_mass_box.Name = "p_mass_box";
+            this.p_mass_box.Size = new System.Drawing.Size(100, 20);
+            this.p_mass_box.TabIndex = 2;
             // 
             // label2
             // 
@@ -71,12 +71,12 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Payload mass (t)";
             // 
-            // textBox3
+            // min_accel_box
             // 
-            this.textBox3.Location = new System.Drawing.Point(145, 60);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 4;
+            this.min_accel_box.Location = new System.Drawing.Point(145, 60);
+            this.min_accel_box.Name = "min_accel_box";
+            this.min_accel_box.Size = new System.Drawing.Size(100, 20);
+            this.min_accel_box.TabIndex = 4;
             // 
             // label3
             // 
@@ -87,45 +87,45 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Minimum acceleration";
             // 
-            // button1
+            // comp_button
             // 
-            this.button1.Location = new System.Drawing.Point(98, 86);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Compute";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.comp_button.Location = new System.Drawing.Point(109, 86);
+            this.comp_button.Name = "comp_button";
+            this.comp_button.Size = new System.Drawing.Size(75, 23);
+            this.comp_button.TabIndex = 6;
+            this.comp_button.Text = "Compute";
+            this.comp_button.UseVisualStyleBackColor = true;
+            this.comp_button.Click += new System.EventHandler(this.button1_Click);
             // 
-            // progressBar1
+            // progress_bar
             // 
-            this.progressBar1.Location = new System.Drawing.Point(43, 127);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(202, 23);
-            this.progressBar1.TabIndex = 7;
+            this.progress_bar.Location = new System.Drawing.Point(43, 127);
+            this.progress_bar.Name = "progress_bar";
+            this.progress_bar.Size = new System.Drawing.Size(202, 23);
+            this.progress_bar.TabIndex = 7;
             // 
-            // richTextBox1
+            // output_box
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(43, 157);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(202, 242);
-            this.richTextBox1.TabIndex = 8;
-            this.richTextBox1.Text = "";
+            this.output_box.Location = new System.Drawing.Point(43, 157);
+            this.output_box.Name = "output_box";
+            this.output_box.Size = new System.Drawing.Size(202, 242);
+            this.output_box.TabIndex = 8;
+            this.output_box.Text = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(316, 452);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.output_box);
+            this.Controls.Add(this.progress_bar);
+            this.Controls.Add(this.comp_button);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.min_accel_box);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.p_mass_box);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.v_mass_box);
             this.Name = "Form1";
             this.Text = "KSP optimum stage calculator";
             this.ResumeLayout(false);
@@ -135,15 +135,15 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox v_mass_box;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox p_mass_box;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox min_accel_box;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button comp_button;
+        private System.Windows.Forms.ProgressBar progress_bar;
+        private System.Windows.Forms.RichTextBox output_box;
     }
 }
 

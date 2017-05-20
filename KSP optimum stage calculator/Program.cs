@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Copyright c. 2017 Theodore M. Thomas
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
