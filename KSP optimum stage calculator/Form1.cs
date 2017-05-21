@@ -30,9 +30,22 @@ namespace KSP_optimum_stage_calculator
 
             //Construct the list of available engines
             engines = new List<Engine>();
+            engines.Add(new Engine("Spider", .02, 2.0, 290.0));
+            engines.Add(new Engine("Twitch", .09, 16.0, 290.0));
+            engines.Add(new Engine("Thud", .9, 120.0, 305.0));
+            engines.Add(new Engine("Ant", .02, 2.0, 315));
             engines.Add(new Engine("Spark", 0.1, 20.0, 320.0));
             engines.Add(new Engine("Terrier", 0.5, 60.0, 345.0));
+            engines.Add(new Engine("Reliant", 1.25, 240.0, 310.0));
+            engines.Add(new Engine("Swivel", 1.5, 215.0, 320.0));
+            engines.Add(new Engine("Vector", 4.0, 1000.0, 315.0));
+            engines.Add(new Engine("Dart", 1.0, 180.0, 340.0));
+            engines.Add(new Engine("Nerv", 3.0, 60.0, 800.0));
             engines.Add(new Engine("Poodle", 1.75, 250.0, 350.0));
+            engines.Add(new Engine("Skipper", 3.0, 650.0, 320.0));
+            engines.Add(new Engine("Mainsail", 6.0, 1500.0, 310.0));
+            engines.Add(new Engine("Rhino", 9.0, 2000.0, 340.0));
+            engines.Add(new Engine("Mammoth", 15.0, 4000.0, 315.0));
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -50,10 +63,13 @@ namespace KSP_optimum_stage_calculator
                 output_box.Text = "Error: Missing or improper inputs";
                 return;
             }
-
-            int max_stages = 2; //TEMPORARY-Replace with diminishing returns detection
+            //I would have it check an arbitrary number of stages, but A: that would mess up the
+            //progress bar big time, and B: 5 stages should really be enough for a transfer.
+            int max_stages = 5;
             //Reset best_rocket, best_dv
             best_rocket = new List<Stage>();
+            //Reset the progress bar
+            progress_bar.Value = 0;
             best_dv = 0;
             for (int a = 1; a <= max_stages; a++)
             {
@@ -76,6 +92,8 @@ namespace KSP_optimum_stage_calculator
                 if(stageNum != rocket.Count - 1)
                 {
                     buildRocket(ref rocket, stageNum+1); //Use recursion to simulate n-ary nested foreach loops
+                    if (stageNum == 0)
+                        progress_bar.PerformStep();
                 }
                 else //In here, do all of the math
                 {
@@ -98,11 +116,20 @@ namespace KSP_optimum_stage_calculator
                         double f_xh = functionEval(ref p_vals, ref t_vals, rocket.Count, x + h) - x_sum;
                         double df_dx = (f_xh - f_x) / h; //Numerically compute the derivative
                         x -= f_x / df_dx;
+                        //If we've produced NaN at any point, or have converged to a negative x, quit this layer of recursion
+                        //And move on to the next configuration
+                        if (Double.IsNaN(x) || (a == 9 && x < 0)) 
+                            return;
                     }
                     //Now that we have x_1, actually put the vehicle together
                     double[] x_vals = new double[rocket.Count];
                     //Grab all the x values
                     computeXSequence(ref x_vals, ref p_vals, ref t_vals, rocket.Count, x);
+
+                    //More checking for negative convergence
+                    for(int a = 0; a < rocket.Count; a++)
+                        if (x_vals[a] < 0)
+                            return;
 
                     //Compute stage masses
                     for (int a = 0; a < rocket.Count; a++)
@@ -115,6 +142,9 @@ namespace KSP_optimum_stage_calculator
                         mp = mv / Math.Pow(Math.E, x_vals[a]);
                         rocket[a].mass = mv - mp;
                         rocket[a].payload_mass = mp;
+                        //You can never check for negative values too many times
+                        if (rocket[a].mass < 0)
+                            return;
                     }
 
                     //Determine engine quantities

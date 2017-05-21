@@ -36,6 +36,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.comp_button = new System.Windows.Forms.Button();
             this.output_box = new System.Windows.Forms.RichTextBox();
+            this.progress_bar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // v_mass_box
@@ -98,17 +99,27 @@
             // 
             // output_box
             // 
-            this.output_box.Location = new System.Drawing.Point(43, 115);
+            this.output_box.Location = new System.Drawing.Point(43, 144);
             this.output_box.Name = "output_box";
             this.output_box.Size = new System.Drawing.Size(202, 242);
             this.output_box.TabIndex = 8;
             this.output_box.Text = "";
             // 
+            // progress_bar
+            // 
+            this.progress_bar.Location = new System.Drawing.Point(43, 115);
+            this.progress_bar.Maximum = 60;
+            this.progress_bar.Name = "progress_bar";
+            this.progress_bar.Size = new System.Drawing.Size(202, 23);
+            this.progress_bar.Step = 1;
+            this.progress_bar.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(296, 378);
+            this.ClientSize = new System.Drawing.Size(296, 398);
+            this.Controls.Add(this.progress_bar);
             this.Controls.Add(this.output_box);
             this.Controls.Add(this.comp_button);
             this.Controls.Add(this.label3);
@@ -134,6 +145,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button comp_button;
         private System.Windows.Forms.RichTextBox output_box;
+        private System.Windows.Forms.ProgressBar progress_bar;
     }
 }
 
