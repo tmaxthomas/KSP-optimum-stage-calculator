@@ -50,6 +50,7 @@ namespace KSP_optimum_stage_calculator
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int max_stages;
             //Grab inputs from the text boxes
 
             try //Or try to, anyways
@@ -57,19 +58,18 @@ namespace KSP_optimum_stage_calculator
                 vessel_mass = Convert.ToDouble(v_mass_box.Text);
                 payload_mass = Convert.ToDouble(p_mass_box.Text);
                 min_accel = Convert.ToDouble(min_accel_box.Text);
+                max_stages = Convert.ToInt32(num_stages_box.Text);
             }
             catch (FormatException) //Handle bad inputs
             {
                 output_box.Text = "Error: Missing or improper inputs";
                 return;
             }
-            //I would have it check an arbitrary number of stages, but A: that would mess up the
-            //progress bar big time, and B: 5 stages should really be enough for a transfer.
-            int max_stages = 5;
             //Reset best_rocket, best_dv
             best_rocket = new List<Stage>();
-            //Reset the progress bar
+            //Reset & reconfigure the progress bar
             progress_bar.Value = 0;
+            progress_bar.Maximum = 16 * (max_stages - 1);
             best_dv = 0;
             for (int a = 1; a <= max_stages; a++)
             {

@@ -37,6 +37,8 @@
             this.comp_button = new System.Windows.Forms.Button();
             this.output_box = new System.Windows.Forms.RichTextBox();
             this.progress_bar = new System.Windows.Forms.ProgressBar();
+            this.num_stages_box = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // v_mass_box
@@ -89,7 +91,7 @@
             // 
             // comp_button
             // 
-            this.comp_button.Location = new System.Drawing.Point(109, 86);
+            this.comp_button.Location = new System.Drawing.Point(106, 113);
             this.comp_button.Name = "comp_button";
             this.comp_button.Size = new System.Drawing.Size(75, 23);
             this.comp_button.TabIndex = 6;
@@ -99,7 +101,7 @@
             // 
             // output_box
             // 
-            this.output_box.Location = new System.Drawing.Point(43, 144);
+            this.output_box.Location = new System.Drawing.Point(43, 171);
             this.output_box.Name = "output_box";
             this.output_box.Size = new System.Drawing.Size(202, 242);
             this.output_box.TabIndex = 8;
@@ -107,18 +109,36 @@
             // 
             // progress_bar
             // 
-            this.progress_bar.Location = new System.Drawing.Point(43, 115);
+            this.progress_bar.Location = new System.Drawing.Point(43, 142);
             this.progress_bar.Maximum = 60;
             this.progress_bar.Name = "progress_bar";
             this.progress_bar.Size = new System.Drawing.Size(202, 23);
             this.progress_bar.Step = 1;
             this.progress_bar.TabIndex = 9;
             // 
+            // num_stages_box
+            // 
+            this.num_stages_box.Location = new System.Drawing.Point(145, 87);
+            this.num_stages_box.Name = "num_stages_box";
+            this.num_stages_box.Size = new System.Drawing.Size(100, 20);
+            this.num_stages_box.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(32, 90);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(107, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Maximum # of stages";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(296, 398);
+            this.ClientSize = new System.Drawing.Size(296, 423);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.num_stages_box);
             this.Controls.Add(this.progress_bar);
             this.Controls.Add(this.output_box);
             this.Controls.Add(this.comp_button);
@@ -146,6 +166,8 @@
         private System.Windows.Forms.Button comp_button;
         private System.Windows.Forms.RichTextBox output_box;
         private System.Windows.Forms.ProgressBar progress_bar;
+        private System.Windows.Forms.TextBox num_stages_box;
+        private System.Windows.Forms.Label label4;
     }
 }
 
