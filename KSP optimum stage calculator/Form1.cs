@@ -198,7 +198,7 @@ namespace KSP_optimum_stage_calculator
             {
                 //Since there's a relation connecting all x to all other x, we can derive the value of the sum of all x
                 //from only the value of x1. However, the relation isn't clean. Hence, this mess.
-                x[a] = Math.Log((8.0 * ((p[a - 1] / p[a]) * ((9.0 / 8.0) * t[a] * Math.Pow(Math.E, x[a - 1]) + 1.0) - 1.0)) / (9.0 * t[a]));
+                x[a] = Math.Log((8.0 * ((p[a] / p[a - 1]) * ((9.0 / 8.0) * t[a - 1] * Math.Pow(Math.E, x[a - 1]) + 1.0) - 1.0)) / (9.0 * t[a]));
             }
         }
 
