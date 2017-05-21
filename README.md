@@ -1,6 +1,6 @@
 # KSP-optimum-stage-calculator
 
-KSP Optimum Stage Calculator v.1.0 5/20/2017
+KSP Optimum Stage Calculator v.1.0    5/21/2017
 
 This is a simple program, designed to calculate the optimum (maximum deltaV) staging setup given a payload mass, maximum vessel
 mass, minimum vessel acceleration, and maximum number of stages.
