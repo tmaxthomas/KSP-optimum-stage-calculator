@@ -26,7 +26,7 @@ Installation instructions:
 
 And there, you're done. Just run the executable to run the program. You can read the license too, if you really want to.
 
-Credit goes to @CunjoCarl and @Abastro of the KSP Forums for both providing the inspiration for this project, and for their (substantial) part in figuring out the mathematics. 
+Credit goes to @Cunjo Carl and @Abastro of the KSP Forums for both providing the inspiration for this project, and for their (substantial) part in figuring out the mathematics. 
 
 Copyright (c) 2017, Theodore M. Thomas
 
