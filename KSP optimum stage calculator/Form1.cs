@@ -52,19 +52,20 @@ namespace KSP_optimum_stage_calculator
             }
 
             int max_stages = 2; //TEMPORARY-Replace with diminishing returns detection
-            for(int a = 1; a <= max_stages; a++)
+            //Reset best_rocket, best_dv
+            best_rocket = new List<Stage>();
+            best_dv = 0;
+            for (int a = 1; a <= max_stages; a++)
             {
-                //Construct empty rocket for use by buildRocket & rest best_rocket, best_dv
+                //Construct empty rocket for use by buildRocket
                 List<Stage> rocket = new List<Stage>();
-                best_rocket = new List<Stage>();
-                best_dv = 0;
                 for(int b = 0; b < a; b++)
                 {
                     rocket.Add(new Stage());
                 }
                 buildRocket(ref rocket, 0);
             }
-            output_box.Text = rocketToString(ref best_rocket);
+            output_box.Text = rocketToString(ref best_rocket) + "Total delta-V: " + best_dv;
         }
         //Recursive optimum rocket-building method-puts optimum rocket in best_rocket global var
         void buildRocket(ref List<Stage> rocket, int stageNum)
@@ -102,34 +103,59 @@ namespace KSP_optimum_stage_calculator
                     double[] x_vals = new double[rocket.Count];
                     //Grab all the x values
                     computeXSequence(ref x_vals, ref p_vals, ref t_vals, rocket.Count, x);
-                    //Compute the delta-V
-                    double delta_v = 0;
-                    for(int a = 0; a < rocket.Count; a++)
-                    {
-                        delta_v += -p_vals[a] * Math.Log(t_vals[a] + (8.0 / 9.0) * Math.Pow(Math.E, -x_vals[a]));
-                    }
-                    if(delta_v > best_dv) //if the current rocket is better than the best rocket
-                    {
-                        //Compute stage masses
-                        for(int a = 0; a < rocket.Count; a++)
-                        {
-                            double mp = 0, mv = 0; //Per-stage payload & vessel masses
-                            if (a == 0)
-                                mv = vessel_mass;
-                            else
-                                mv = rocket[a - 1].payload_mass;
-                            mp = mv / Math.Pow(Math.E, x_vals[a]);
-                            rocket[a].mass = mv - mp;
-                            rocket[a].payload_mass = mp;
-                        }
 
-                        //Sanity check for vehicle mass
-                        double test_mass = payload_mass;
-                        for (int a = 0; a < rocket.Count; a++)
-                            test_mass += rocket[a].mass;
-                        Debug.Assert(Math.Abs(test_mass - vessel_mass) < .01);
+                    //Compute stage masses
+                    for (int a = 0; a < rocket.Count; a++)
+                    {
+                        double mp = 0, mv = 0; //Per-stage payload & vessel masses
+                        if (a == 0)
+                            mv = vessel_mass;
+                        else
+                            mv = rocket[a - 1].payload_mass;
+                        mp = mv / Math.Pow(Math.E, x_vals[a]);
+                        rocket[a].mass = mv - mp;
+                        rocket[a].payload_mass = mp;
+                    }
+
+                    //Determine engine quantities
+
+                    foreach(Stage stage in rocket)
+                    {
+                        double raw_engs = min_accel / (stage.engine.thrust / (stage.mass + stage.payload_mass));
+                        raw_engs = Math.Round(raw_engs);
+                        if (raw_engs == 0) //Make sure we don't have zero engines
+                            raw_engs++;
+                        stage.num_engs = (int)raw_engs;
+                    }
+
+                    //Compute the delta-V using the Rocket Equation
+                    double delta_v = 0;
+                    foreach(Stage stage in rocket)
+                    {
+                        double wet_mass = stage.mass + stage.payload_mass;
+                        double tank_mass = (1.0 / 9.0) * (stage.mass - stage.engine.mass * stage.num_engs);
+                        double dry_mass = stage.payload_mass + stage.engine.mass * stage.num_engs + tank_mass;
+                        double exhaust_velocity = 9.80665 * stage.engine.Isp;
+                        if (wet_mass / dry_mass < 1) //If our engine weighs more than our entire stage
+                            delta_v += 0;
+                        else //Ah, Tsiolkovsky
+                        {
+                            stage.deltaV = exhaust_velocity * Math.Log(wet_mass / dry_mass);
+                            delta_v += stage.deltaV;
+                        }
+                    }
+                    //If the current rocket is better than the best rocket
+                    if (delta_v > best_dv) 
+                    { 
                         best_dv = delta_v;
-                        best_rocket = rocket;
+                        //Yes, we have to copy it this way. If we try to use the assignment op
+                        //or copy constructor, C# just points best_rocket at wherever rocket is stored,
+                        //since rocket is a reference.
+                        best_rocket = new List<Stage>();
+                        foreach(Stage stage in rocket)
+                        {
+                            best_rocket.Add(new Stage(stage));
+                        }
                     }
                 }
             }
@@ -163,7 +189,7 @@ namespace KSP_optimum_stage_calculator
         {
             string ret = "";
             for(int a = 0; a < rocket.Count; a++)
-                ret += "Stage " + Convert.ToString(a) + ": Mass " + Convert.ToString(rocket[a].mass) + " t, " + rocket[a].engine.name + " engine\n\n";
+                ret += "Stage " + a + ": Mass " + rocket[a].mass + " t, " + rocket[a].num_engs + " " + rocket[a].engine.name + " engine(s)\n\n";
             return ret;
         }
     }
@@ -193,16 +219,18 @@ namespace KSP_optimum_stage_calculator
             num_engs = 0;
             mass = 0;
             payload_mass = 0;
+            deltaV = 0;
         }
-        public Stage(Engine engine, int num_engs, double mass, double payload_mass)
+        public Stage(Stage old)
         {
-            this.engine = engine;
-            this.num_engs = num_engs;
-            this.mass = mass;
-            this.payload_mass = payload_mass;
+            engine = old.engine;
+            num_engs = old.num_engs;
+            mass = old.mass;
+            payload_mass = old.payload_mass;
+            deltaV = old.deltaV;
         }
         public Engine engine;
         public int num_engs;
-        public double mass, payload_mass;
+        public double mass, payload_mass, deltaV;
     }
 }

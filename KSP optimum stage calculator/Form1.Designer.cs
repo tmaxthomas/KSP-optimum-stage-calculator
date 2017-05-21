@@ -35,7 +35,6 @@
             this.min_accel_box = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.comp_button = new System.Windows.Forms.Button();
-            this.progress_bar = new System.Windows.Forms.ProgressBar();
             this.output_box = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
@@ -49,7 +48,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(47, 11);
+            this.label1.Location = new System.Drawing.Point(62, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 13);
             this.label1.TabIndex = 1;
@@ -65,7 +64,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(40, 37);
+            this.label2.Location = new System.Drawing.Point(55, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 13);
             this.label2.TabIndex = 3;
@@ -81,11 +80,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 63);
+            this.label3.Location = new System.Drawing.Point(3, 63);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(109, 13);
+            this.label3.Size = new System.Drawing.Size(136, 13);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Minimum acceleration";
+            this.label3.Text = "Minimum acceleration (m/s)";
             // 
             // comp_button
             // 
@@ -97,16 +96,9 @@
             this.comp_button.UseVisualStyleBackColor = true;
             this.comp_button.Click += new System.EventHandler(this.button1_Click);
             // 
-            // progress_bar
-            // 
-            this.progress_bar.Location = new System.Drawing.Point(43, 127);
-            this.progress_bar.Name = "progress_bar";
-            this.progress_bar.Size = new System.Drawing.Size(202, 23);
-            this.progress_bar.TabIndex = 7;
-            // 
             // output_box
             // 
-            this.output_box.Location = new System.Drawing.Point(43, 157);
+            this.output_box.Location = new System.Drawing.Point(43, 115);
             this.output_box.Name = "output_box";
             this.output_box.Size = new System.Drawing.Size(202, 242);
             this.output_box.TabIndex = 8;
@@ -116,9 +108,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(316, 452);
+            this.ClientSize = new System.Drawing.Size(296, 378);
             this.Controls.Add(this.output_box);
-            this.Controls.Add(this.progress_bar);
             this.Controls.Add(this.comp_button);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.min_accel_box);
@@ -142,7 +133,6 @@
         private System.Windows.Forms.TextBox min_accel_box;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button comp_button;
-        private System.Windows.Forms.ProgressBar progress_bar;
         private System.Windows.Forms.RichTextBox output_box;
     }
 }
