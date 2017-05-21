@@ -65,7 +65,7 @@ namespace KSP_optimum_stage_calculator
                 }
                 buildRocket(ref rocket, 0);
             }
-            output_box.Text = rocketToString(ref best_rocket) + "Total delta-V: " + best_dv;
+            output_box.Text = rocketToString(ref best_rocket) + "Total delta-V: " + Math.Round(best_dv, 2) + " m/s";
         }
         //Recursive optimum rocket-building method-puts optimum rocket in best_rocket global var
         void buildRocket(ref List<Stage> rocket, int stageNum)
@@ -189,7 +189,15 @@ namespace KSP_optimum_stage_calculator
         {
             string ret = "";
             for(int a = 0; a < rocket.Count; a++)
-                ret += "Stage " + a + ": Mass " + rocket[a].mass + " t, " + rocket[a].num_engs + " " + rocket[a].engine.name + " engine(s)\n\n";
+            {
+                ret += "Stage " + (a + 1) + ":\nDeltaV: " + Math.Round(rocket[a].deltaV) + " m/s, Total mass: " + Math.Round(rocket[a].mass, 2) + " t, Fuel tank mass: " 
+                    + Math.Round(rocket[a].mass - rocket[a].num_engs * rocket[a].engine.mass, 2) 
+                    + " t, " + rocket[a].num_engs + " " + rocket[a].engine.name;
+                if (rocket[a].num_engs == 1)
+                    ret += " engine\n\n";
+                else
+                    ret += " engines\n\n";
+            }
             return ret;
         }
     }
